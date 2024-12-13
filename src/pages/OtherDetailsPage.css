@@ -1,0 +1,163 @@
+/* Overall Container */
+.other-details-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    min-width: 1800px;
+   
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+/* Header Section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.back-button {
+    background-color: #6E85F2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.user-email {
+    font-size: 16px;
+    color: #555;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
+    background-color: #6e85f2; /* Set a visible background color */
+    color: #ffffff; /* Set text color for contrast */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* Session Feedback Section */
+.session-feedback-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feedback-subtext {
+    font-size: 14px;
+    color: #777;
+}
+
+.stars-container {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 24px;
+    color: #ddd;
+}
+
+.star.filled {
+    color: gold;
+}
+
+.star-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Additional Feedback Section */
+.additional-feedback-section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.feedback-content {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* User Statistics Section */
+.user-statistics {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.scrollable {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.scroll-content div {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+.has-feedback {
+    background-color: #f0f8ff; /* Light blue */
+}
+
+.no-feedback {
+    background-color: #f9f9f9; /* Neutral color */
+}

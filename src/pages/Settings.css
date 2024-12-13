@@ -1,0 +1,306 @@
+.Settings-body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #FFF; 
+    overflow: hidden;
+  }
+  
+  .Settings-page {
+    width: 100%;
+    height: 100%;
+    background: #FFF;
+    overflow: hidden;
+  }
+  
+
+
+ 
+  
+  
+  .Settings-page-header {
+    width: 100%;
+    
+    padding: 15px 54px;
+    border-bottom: 3px solid #D8D8D8;
+   
+    /* background: #e0e0e0; Light gray background for the header section */
+  }
+  
+  .Settings-page-content-background {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding-top: 30px ;
+    padding-left: 56px;
+    /* Maybe give this a border or different shade to distinguish 
+    border: 1px solid #ccc; */
+  }
+  
+  .settings-header-text {
+    color: var(--Main-Black-Colour, #323335);
+    font-feature-settings: 'calt' off;
+    font-family: 'Aspekta-600';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25.877px; /* 107.82% */
+    padding-left: 10px;
+}
+
+  /* Inner header layout */
+  .Settings-page-header-inside {
+    display: flex;
+    align-items: center;
+    gap: 648px;
+    align-self: stretch;
+   /* background: #d0d0f0; /* Light bluish shade */
+  }
+  
+  .Settings-page-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+   /* background: #c0f0c0;  Light green shade */
+  }
+  
+  .Settings-page-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    /* background: #f0c0c0;  Light red shade */
+  }
+  
+  .Settings-page-back-button{
+    display: flex;
+    width: 10px;
+    height: 10px;
+    padding: 16px;
+    
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    background: #6E85F2;
+  }
+  
+  
+  
+  .Settings-page-jd-content{
+    padding:0px 20px 20px 20px;
+    
+    height: 500px; /* or some fixed height */
+    overflow: auto;
+  
+  }
+
+  .Settings-page-title-display-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+
+  }
+
+  .Settings-page-intro-display-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+  }
+
+  .Settings-page-rules-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    padding-left: 56px;
+    padding-top: 50px;
+
+  }
+
+  .Settings-page-title-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .Settings-page-title-text{
+    width: 49px;
+    color: var(--Main-Black-Colour, #323335);
+    font-family: 'Aspekta-500';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 81.818% */
+  }
+
+
+.Settings-page-title-box{
+    display: flex;
+    padding: 18px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--Neutral-300, #D1D5DB);
+    min-height: 30px;
+    
+    overflow: auto;
+
+}
+
+.Settings-page-title-box-rules{
+    width: 759px;
+    height: 30px;
+    color: var(--d-9-d-9-d-9, #323335);
+    font-family: 'Aspekta-400';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 162%; /* 32.4px */
+}
+
+.Settings-page-intro-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 20px; /* Add spacing between title and box */
+    padding-top: 10px;
+
+  }
+  
+
+
+  .Settings-page-intro-text{
+    width: 138px;
+    color: var(--Main-Black-Colour, #323335);
+    font-family: 'Aspekta-500';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 81.818% */
+   
+ }
+
+  .Settings-page-intro-box{
+    display: flex;
+    width: 1573px;
+    height: 70px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--Neutral-300, #D1D5DB);
+    min-height: 70px;
+    overflow: auto;
+   
+}
+
+  .Settings-page-intro-box-rules{
+    width: 1535px;
+    height: 144px;
+    color: var(--d-9-d-9-d-9, #323335);
+    font-family: 'Aspekta-400';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 162%; /* 32.4px */
+
+}
+
+.Settings-page-rules-1-2-content{
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+    
+}
+
+
+.Settings-page-rules-1-content{
+    display: flex;
+    width: 646px;
+    height: 160px;
+    padding: 36px 0px 36px 48px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 4px;
+    background: #F1F1F1;
+}
+
+.Settings-page-jd-rules-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+
+}
+
+.Settings-page-jd-rules-text{
+    width: 203px;
+    color: var(--BLACK-COLOUR, #0B0D0E);
+    font-family: 'Aspekta-500';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 109.091% */
+    
+}
+
+.Settings-page-rules-upload-box{
+    display: flex;
+    width: 544px;
+    height: 40px;
+    padding: 19px 0px 21px 0px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px dashed #15202B;
+    background: #FFF;
+}
+
+
+.Settings-page-rules-description{
+    width: 504px;
+    color: #474747;
+    font-family: 'Aspekta-400';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 100% */
+
+}
+
+
+.Settings-page-rules-2-content{
+    display: flex;
+    width: 646px;
+    height: 160px;
+    padding: 36px 0px 36px 48px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 4px;
+    background: #F1F1F1;
+}
+
+.Settings-page-rules-3{
+    display: flex;
+    width: 646px;
+    height: 160px;
+    padding: 36px 0px 36px 48px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 4px;
+    background: #F1F1F1; 
+}
+

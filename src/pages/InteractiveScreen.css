@@ -1,0 +1,93 @@
+/* InteractiveScreen.css */
+
+/* Remove global body styling and rely on local classes only */
+/* If you need global resets, do them in a separate global CSS or at the App level. */
+
+.interactive-screen {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* Background color */
+    /* Remove fixed viewport constraints here so it doesn't affect other pages */
+    /* width: 100vw; */
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+.interactive-screen-header {
+    text-align: center;
+    padding: 20px; /* Add spacing */
+    background-color: #f5f5f5; /* Subtle background color for header */
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.interactive-screen-user-list {
+    /* Remove flex-grow and rely on natural page flow */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between user rows */
+    padding: 20px;
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding and borders in width */
+    background-color: #ffffff;
+}
+
+/* Individual user rows */
+.interactive-screen-user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; /* Increased padding for spacing */
+    margin-bottom: 15px; /* Add margin between rows */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Rounded corners for rows */
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+/* User info styles */
+.interactive-screen-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spacing between user name and credits */
+}
+
+.interactive-screen-user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.interactive-screen-user-credits {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Actions container */
+.interactive-screen-user-actions {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Button styles */
+.interactive-screen-blue-button {
+    background-color: #6e85f2;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin: 0 5px; /* Add space between buttons */
+}
+
+.interactive-screen-blue-button:hover {
+    background-color: #5a70d9;
+}
