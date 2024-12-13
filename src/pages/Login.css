@@ -39,34 +39,39 @@
     line-height: normal;
 }
 
-.logo-image-box{
-    width: 134.343px;
-    height: 134.343px;
-    flex-shrink: 0;
-    margin-left: 15px; 
+/* Parent container for the image and circular border */
+.logo-image-box {
+    width: 134.343px; /* Define exact size */
+    height: 134.343px; /* Define exact size */
+    position: relative; /* Needed for absolute positioning inside */
+    border-radius: 50%; /* Circular container */
+    overflow: hidden; /* Ensures no content overflows the box */
+    display: flex; /* Center-align contents if needed */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Optional background for testing */
 }
 
-
-.logo-img-round{
-    position: absolute; 
-    width: 134.343px;
-    height: 134.343px;
-    flex-shrink: 0;
-    stroke-width: 2.687px;
-    stroke: #6E85F2;
-    padding-right: 2px;
-    z-index: 1; /* Ensures it appears below the other image */
-
-}
-
-.logo-img{
+/* Circular border */
+.logo-img-round {
     position: absolute;
-    width: 96.727px;
-    height: 76.576px;
-    flex-shrink: 0;
-    padding-right: 2px;
-    z-index: 2; /* Ensures it appears above the rounded image */   
+    width: 128px; /* Slightly smaller than container */
+    height: 128px; /* Slightly smaller than container */
+    border: 3px solid #6E85F2; /* Adds a border around the image */
+    border-radius: 50%; /* Circular shape */
+    z-index: 1; /* Sits below the actual image */
 }
+
+/* Logo image */
+.logo-img {
+    position: absolute;
+    width: 100%; /* Ensure it fills the container */
+    height: 100%; /* Ensure it fills the container */
+    object-fit: cover; /* Maintain aspect ratio while covering the container */
+    z-index: 2; /* Sits above the circular border */
+    padding-left: 10px;
+}
+
 
 
 .password-box{

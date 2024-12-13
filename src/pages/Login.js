@@ -43,12 +43,8 @@ const LoginPage = ({ onLoginSuccess }) => {
         <form className="login-container" onSubmit={handleSubmit}>
           <div className="logobox">
             <div className="logo-image-box">
-              <div className="logo-img-round">
-                <img src="https://via.placeholder.com/100" alt="Logo" />
-              </div>
-      
               <div className="logo-img">
-                <img src="https://via.placeholder.com/100" alt="Logo" />
+                <img src="/pb-login-logo-rs.png" alt="Logo" />
               </div>
             </div>
             <div className="logo-title">Prodigy PB</div>
