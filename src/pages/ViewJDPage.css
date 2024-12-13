@@ -131,7 +131,7 @@
   color: var(--Main-Black-Colour, #323335);
   font-feature-settings: 'calt' off;
   font-family: 'Inter-semibold';
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 24px; /* 150% */
@@ -172,10 +172,15 @@
 }
 
 .view-jd-content{
-  padding:30px 20px 20px 40px;
-  
-  height: 600px; /* or some fixed height */
-  overflow: auto;
+  padding:0px 20px 20px 40px;
+  font-family: 'Aspekta-400';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #323335;
+  height: 500px; /* Viewport height minus header height */
+  overflow-y: auto; /* Enable vertical scrolling for the content area */
+  margin-top: 50px; /* Add margin to prevent overlap with the fixed header */
 
 }
 
@@ -185,7 +190,7 @@
   align-items: center;
   width: 95%; /* Match .chatbox width */
   margin: 0 auto; /* Center */
-  padding: 0; /* Match padding */
+  padding: 0 ; /* Match padding */
   box-sizing: border-box; /* Consistency */
   overflow: hidden; /* Prevent overflowing text */
 }
@@ -195,7 +200,7 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
-  width: 100%; /* Match parent width */
+  width: 96.5%; /* Match parent width */
   height: 59px;
   padding: 0px 26px;
   border-radius: 4px;
@@ -237,13 +242,21 @@
 }
 
 
+/* Styles for the JD Link Copy Icon */
 .view-jd-copy-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 59px;
   height: 59px;
-  flex-shrink: 0;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .view-jd-copy-border{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 59px;
   height: 59px;
   flex-shrink: 0;
@@ -258,11 +271,45 @@
   flex-shrink: 0;
 }
 
+
+.view-jd-content-copy-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: -75px;
+  padding-right: 10px;
+}
+
+.view-jd-content-copy-border{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 2px solid #B5B5B5;
+  background: #F1F1F1;
+}
+
+.view-jd-content-copy-img {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+}
+
 .view-jd-copy-img path {
   stroke: #424242;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+
+
 
 

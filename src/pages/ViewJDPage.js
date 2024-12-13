@@ -46,12 +46,11 @@ const ViewJDPage = () => {
     console.log("Formatting JD content for display");
     if (!jd) return ""; // Handle undefined jd to avoid errors
     return jd
-      .replace(/(?:\s*-\s*)/g, "<br> • ")
-      .replace(/\n/g, "<br>")
-      .replace(/(Job Opportunity:)/g, "<strong>$1</strong>")
-      .replace(/(Location:|Role Summary:|Key Responsibilities:|Company Name:|Responsibilities: |Minimum Qualifications:|Company:|Position:|Required Skills & Qualifications:|Benefits:)/g, "<strong>$1</strong>");
+  
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Replace **text** with <strong>text</strong>
+      .replace(/(?:\s*-\s*)/g, '<br> • ') // Replace " - " with bullet points
+      .replace(/\n/g, '<br>'); // Replace newlines with HTML <br> tags
   };
-
  
   
   return (
@@ -64,7 +63,7 @@ const ViewJDPage = () => {
               className="view-jd-back-button" 
               onClick={handleBackNavigation}
             >
-              <img src="/back.jpg" alt="Back" />
+              <img src="/back.png" alt="Back" />
             </div>
             {userEmail && <div className="view-jd-user-email">{userEmail}</div>}
           </div>
@@ -93,16 +92,9 @@ const ViewJDPage = () => {
               {data.LinkCreated}
             </div>
           </div>
-          <div 
-            className="copy-icon" 
-            onClick={handleCopyLink}
-          >
-            <div className="copy-border">
-              <img 
-                src="/copy-icon.svg" 
-                alt="Copy" 
-                className="copy-img" 
-              />
+          <div className=".view-jd-copy-icon"  onClick={handleCopyLink}>
+             < div className="view-jd-copy-border">
+                <img  src="/copy-icon.png" alt="Copy" className="view-jd-copy-img" />
             </div>
           </div>
         </div>
@@ -113,10 +105,22 @@ const ViewJDPage = () => {
       )}
       
       <div className="view-jd-chatbox">
-        <div className="view-jd-chatbox-header">
-          <div className="view-jd-chatbox-header-text">Job Description</div>
-        </div>
-        <div className="view-jd-content">
+          <div className="view-jd-chatbox-header">
+            <div className="view-jd-chatbox-header-text">Job Description</div>
+            <div
+              className="view-jd-content-copy-icon"
+              onClick={handleCopyJobDescription}
+            >
+              <div className="view-jd-content-copy-border">
+                <img
+                  src="/copy-icon.png"
+                  alt="Copy"
+                  className="view-jd-content-copy-img "
+                />
+              </div>
+            </div>
+          </div>
+          <div className="view-jd-content">
             {data && data.JDCreated ? (
               <div
                 dangerouslySetInnerHTML={{ __html: formatJobDescription(data.JDCreated) }}
@@ -124,25 +128,9 @@ const ViewJDPage = () => {
             ) : (
               <p>No job description available</p>
             )}
-            {data && data.JDCreated ? (
-              <div
-                className="copy-icon copy-jd"
-                onClick={handleCopyJobDescription}
-              >
-                <div className="copy-border">
-                  <img 
-                    src="/copy-icon.svg" 
-                    alt="Copy" 
-                    className="copy-img" 
-                  />
-                </div>
-              </div>
-            ) : (
-              <p>No job description available</p>
-            )}
-
+          </div>
         </div>
-      </div>
+
     </section>
   </div>
 );
