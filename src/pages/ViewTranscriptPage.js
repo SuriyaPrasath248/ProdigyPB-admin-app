@@ -18,10 +18,11 @@ const ViewTranscriptPage = () => {
                 const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1/Transcript/ChatHistory`;
                 const docRef = doc(db, path);
                 const docSnap = await getDoc(docRef);
-
+    
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     setChatHistory(data.Chat || []);
+                    console.log("Chat History:", data.Chat); // Debug chat history
                 } else {
                     console.error("No data found at path:", path);
                 }
@@ -31,7 +32,7 @@ const ViewTranscriptPage = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchChatHistory();
     }, [userEmail]);
 
@@ -87,42 +88,56 @@ const ViewTranscriptPage = () => {
     }
 
     return (
-        <div className="view-transcript-page">
-            <div className="header">
-                <button className="back-button" onClick={() => navigate(-1)}>
-                    &larr; Back
-                </button>
-                <div className="header-info">
-                    <span className="user-name">Done by: {userEmail}</span>
-                </div>
-                <div className="header-actions">
-                    <button
-                        className="header-button"
-                        onClick={handleOtherDetails}
-                    >
-                        Other Details
-                    </button>
-                    <button
-                        className="header-button"
-                        onClick={handleViewJD}
-                    >
-                        View Final J.D.
-                    </button>
-                </div>
-            </div>
-            <div className="chat-container">
-                <h1 className="chat-header">Chat Transcript</h1>
-                <div className="chat-content">
-                    {chatHistory.map((chat, index) => (
-                        <React.Fragment key={index}>
-                            <div className="chat-bubble prompt">{chat.Prompt}</div>
-                            <div className="chat-bubble response">{chat.Response}</div>
-                        </React.Fragment>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-};
+        <div className="transcript-body">
+        <section className="ViewTranscriptbg">
+          {/* Header Section */}
+          <div className="transcript-header">
+            <div className="transcript-header-inside">
+              {/* Left Header (Back Button) */}
+              <div className="transcript-header-left">
+                <div className="transcript-back-button"  onClick={() => navigate(-1)}>
+                    <img src="/back.png" alt="Back" />
+                    </div>
+                    {userEmail && <div className="transcript-user-email">{userEmail}</div>}
+                    
 
+              </div>
+  
+              {/* Right Header (Other Details and View JD Buttons) */}
+              <div className="transcript-header-right">
+                <div className="transcript-OtherDetails-button" onClick={handleOtherDetails}>Other Details</div>
+                <div className="transcript-ViewJD-button" onClick={handleViewJD} >View Final J.D</div>
+              </div>
+            </div>
+          </div>
+  
+        {/* Chatbox Section */}
+        <div className="transcript-chatbox">
+            <div className="transcript-chatbox-inside">
+                {chatHistory.map((chat, index) => (
+                <React.Fragment key={index}>
+                    {/* Prompt */}
+                    <div className="transcript-ai-container">
+                    <div class="transcript-ai-img-circle">
+                        <img src="/ailogo.png" alt="AI" class="transcript-ai-img" />
+                    </div>
+                    <div className="transcript-ai-text">{chat.Response || "No AI Message"}</div>
+                    </div>
+
+                    {/* User Response */}
+                    <div className="transcript-user-container">
+                    <div className="transcript-user-text">{chat.Prompt || "No User Prompt"}</div>
+                    </div>
+                </React.Fragment>
+                ))}
+            </div>
+            </div>
+
+      </section>
+    </div>
+    );
+  };
+        
+
+  
 export default ViewTranscriptPage;

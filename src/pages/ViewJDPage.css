@@ -28,12 +28,14 @@
 
 .view-jd-header {
   width: 100%;
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px 54px;
-  border-bottom: 3px solid #b3b3b3;
-  padding-top: 20px;
+  border-bottom: 3px solid #D8D8D8;
   margin: 0 auto;
-  
+  box-sizing: border-box;
+  overflow: hidden;
   /* background: #e0e0e0; Light gray background for the header section */
 }
 
@@ -59,11 +61,11 @@
 /* Inner header layout */
 .view-jd-header-inside {
   display: flex;
+  justify-content: space-between; /* Space between left and right sections */
   align-items: center;
-  gap: 648px;
-  width:100%;
-  justify-content: space-between;
- /* background: #d0d0f0; /* Light bluish shade */
+  width: 100%; /* Ensure full width */
+  padding: 0 20px; /* Optional: add horizontal padding for spacing */
+  box-sizing: border-box;
 }
 
 .view-jd-header-left {
@@ -77,9 +79,8 @@
 .view-jd-header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
-  align-self: stretch;
-  /* background: #f0c0c0;  Light red shade */
+  gap: 16px; /* Add spacing between the buttons */
+  margin-left: auto; 
 }
 
 .view-jd-user-email{
@@ -103,7 +104,7 @@
   gap: 8px;
   border-radius: 4px;
   background: #6E85F2;
-  margin-left: 8px;
+  margin-left: -16px;
 }
 
 .view-jd-ViewTranscript-button{
@@ -178,7 +179,7 @@
   font-size: 20px;
   line-height: 1.6;
   color: #323335;
-  height: 500px; /* Viewport height minus header height */
+  height: 550px; /* Viewport height minus header height */
   overflow-y: auto; /* Enable vertical scrolling for the content area */
   margin-top: 50px; /* Add margin to prevent overlap with the fixed header */
 

@@ -54,23 +54,25 @@ const InteractiveScreen = () => {
     }, []);
 
     const handleOtherDetails = async (userEmail) => {
-        const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
-        const docRef = doc(db, path);
-        const docSnap = await getDoc(docRef);
-    
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            const filteredData = { ...data };
-            delete filteredData.JDCreated;
-            delete filteredData.LinkCreated;
-    
-            navigate("/otherdetails", {/*{ state: { data: filteredData, userEmail } } */});
-            //navigate("/otherdetails", { state: { data: filteredData, userEmail }});
-            
-        } else {
-            console.error("No data found at path:", path);
-        }
-    };
+      console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
+      const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
+      const docRef = doc(db, path);
+      const docSnap = await getDoc(docRef);
+  
+      if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log("Fetched Data for OtherDetailsPage:", data); // Log the fetched data
+  
+          const filteredData = { ...data };
+          delete filteredData.JDCreated;
+          delete filteredData.LinkCreated;
+  
+          console.log("Filtered Data to send:", filteredData); // Log filtered data being sent
+          navigate("/otherdetails", { state: { data: filteredData, userEmail } });
+      } else {
+          console.error("No data found at path:", path);
+      }
+  };
     
     const handleViewJD = async (userEmail) => {
         const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
@@ -131,26 +133,58 @@ const InteractiveScreen = () => {
                         <span className="interactive-screen-user-credits">Credits Remaining - {Credits}</span>
                     </div>
                     <div className="interactive-screen-user-actions">
-                        <button className="interactive-screen-blue-button" onClick={() => handleOtherDetails(Useremail)}>Other Details</button>
-                        <button className="interactive-screen-blue-button" onClick={() => handleViewTranscript(Useremail)}>View Transcript</button>
-                        <button className="interactive-screen-blue-button" onClick={() => handleViewJD(Useremail)}>View Final J.D.</button>
+                        <div className="interactive-screen-blue-button" onClick={() => handleOtherDetails(Useremail)}>Other Details</div>
+                        <div className="interactive-screen-blue-button" onClick={() => handleViewTranscript(Useremail)}>View Transcript</div>
+                        <div className="interactive-screen-blue-button" onClick={() => handleViewJD(Useremail)}>View Final J.D.</div>
                     </div>
                 </div>
+                    
+
+
             );
         }
 
         return (
-            <div className="interactive-screen-user-row" key={Useremail}>
-                <div className="interactive-screen-user-info">
-                    <span className="interactive-screen-user-name">{Name}</span>
-                    <span className="interactive-screen-user-credits">Credits Remaining - {Credits}</span>
+            <div className="userlist-frame" key={Useremail}>
+            {/* Left Section */}
+            <div className="userlist-frame-left">
+              <div className="userlist-name">{Name}</div>
+              <div className="userlist-name-partition"></div>
+              <div className="userlist-credits-container">
+                <div className="userlist-credits-text">Credits Remaining -</div>
+                <div className="userlist-credits-info-container">
+                  <div className="userlist-credits-info-bg">
+                    <div className="userlist-credits-info">{Credits}</div>
+                  </div>
                 </div>
-                <div className="interactive-screen-user-actions">
-                    <button className="interactive-screen-blue-button" onClick={() => handleOtherDetails(Useremail)}>Other Details</button>
-                    <button className="interactive-screen-blue-button" onClick={() => handleViewTranscript(Useremail)}>View Transcript</button>
-                    <button className="interactive-screen-blue-button" onClick={() => handleViewJD(Useremail)}>View Final J.D.</button>
-                </div>
+              </div>
             </div>
+      
+            {/* Right Section */}
+            <div className="userlist-frame-right">
+              <div
+                className="userlist-otherdetails-button"
+                onClick={() => handleOtherDetails(Useremail)}
+              >
+                Other Details
+              </div>
+      
+              <div className="userlist-buttons">
+                <div
+                  className="userlist-viewtranscript-button"
+                  onClick={() => handleViewTranscript(Useremail)}
+                >
+                  <div className="userlist-viewtranscript-button-text">View Transcript</div>
+                </div>
+                <div
+                  className="userlist-viewjd-button"
+                  onClick={() => handleViewJD(Useremail)}
+                >
+                  <div className="userlist-viewjd-button-text">View Final J.D.</div>
+                </div>
+              </div>
+            </div>
+          </div>
         );
     };
 
@@ -170,8 +204,11 @@ const InteractiveScreen = () => {
                 // Use correct property names (case-sensitive)
                 const introtitle = docSnap.data().IntroTitle; 
                 const intromessage = docSnap.data().IntroMessage;
-                console.log("Navigating to Settings page with data:", { introtitle, intromessage });
-                navigate("/Settings", { state: { introtitle, intromessage } });
+                const interactionrules = docSnap.data().InteractionPrompt;
+                const resultsprompt = docSnap.data().ResultsPrompt;
+                const miscellaneousprompt = docSnap.data().MiscPrompt;
+                console.log("Navigating to Settings page with data:", { introtitle, intromessage, interactionrules, resultsprompt, miscellaneousprompt });
+                navigate("/Settings", { state: { introtitle, intromessage, interactionrules, resultsprompt, miscellaneousprompt } });
             } else {
                 console.error("Admin document not found.");
             }
@@ -184,17 +221,38 @@ const InteractiveScreen = () => {
     
 
     return (
-        <div className="interactive-screen">
-        <div className="interactive-screen-header">
-            <h1>User History</h1>
-            <button className="interactive-screen-header-button" onClick={handleSettingsClick}>Settings</button>
+        <div className="interactive-screen-page-container">
+        <div className="interactive-screen-page">
+  
+          {/* Header Section */}
+          <div className="interactive-screen-header">
+            <div className="interactive-screen-header-inside">
+              <div className="interactive-screen-header-left">
+                <div className="interactive-screen-header-left-text"> UserHistory</div>
+               
+              </div>
+              <div className="interactive-screen-header-right" >
+                <div className="interactive-screen-settings-container">
+                    <img src="/settings.png" alt="Settings" className="interactive-screen-settings-img" onClick={handleSettingsClick} />
+                </div>
+             </div>
+
+            </div>
+          </div>
+  
+          {/* User List Container */}
+          <div className="interactive-screen-userlist-container">
+            <div className="interactive-screen-userlist-container-inside">
+              {/* Add dynamic user content or components here */}
+              {userList.map((user) => renderUserRow(user))}
+            </div>
+          </div>
+          
         </div>
-        <div className="user-list">
-            {userList.map((user) => renderUserRow(user))}
-        </div>
-    </div>
-    
+      </div>
+   
     );
 };
 
 export default InteractiveScreen;
+
