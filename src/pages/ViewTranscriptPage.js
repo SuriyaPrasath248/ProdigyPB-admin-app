@@ -38,7 +38,7 @@ const ViewTranscriptPage = () => {
     // Function for "Other Details"
     const handleOtherDetails = async (userEmail, conversationNumber ) => {
         console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
-        const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
+        const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation${conversationNumber}`;
         const docRef = doc(db, path);
         const docSnap = await getDoc(docRef);
     

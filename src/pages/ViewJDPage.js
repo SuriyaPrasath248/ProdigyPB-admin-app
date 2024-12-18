@@ -15,7 +15,7 @@ const ViewJDPage = () => {
 
     const handleOtherDetails = async (userEmail, conversationNumber ) => {
       console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
-      const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
+      const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation${conversationNumber}`;
       const docRef = doc(db, path);
       const docSnap = await getDoc(docRef);
   
@@ -44,7 +44,7 @@ const ViewJDPage = () => {
           }
       
           try {
-              const path = `ProjectBrainsReact/User/${email}/userdetails/Conversations/Conversation1/Transcript/ChatHistory`;
+              const path = `ProjectBrainsReact/User/${email}/userdetails/Conversations/Conversation${conversationNumber}/Transcript/ChatHistory`;
               const docRef = doc(db, path);
               const docSnap = await getDoc(docRef);
       
