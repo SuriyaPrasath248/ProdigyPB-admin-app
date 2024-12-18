@@ -73,7 +73,6 @@ const InteractiveScreen = () => {
           console.error("No data found at path:", path);
       }
   };
-  
     
     const handleViewJD = async (userEmail) => {
         const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
@@ -122,50 +121,28 @@ const InteractiveScreen = () => {
     };
     
 
-    const handleViewAll = (userEmail, conversationNumber) => {
-      console.log(`View All clicked for User: ${userEmail}, Conversations: ${conversationNumber}`);
-      navigate("/conversationpage", { state: { userEmail, conversationNumber } });
-
-    };
     
     const renderUserRow = (user) => {
         const { Name, Useremail, Credits, ConversationNumber } = user;
 
         if (ConversationNumber > 1) {
             return (
-               
-              <div className="userlist-frame" key={Useremail}>
-              {/* Left Section */}
-              <div className="userlist-frame-left">
-                <div className="userlist-name">{Name}</div>
-                <div className="userlist-name-partition"></div>
-                <div className="userlist-credits-container">
-                  <div className="userlist-credits-text">Credits Remaining -</div>
-                  <div className="userlist-credits-info-container">
-                    <div className="userlist-credits-info-bg">
-                      <div className="userlist-credits-info">{Credits}</div>
+                <div className="interactive-screen-user-row" key={Useremail}>
+                    <div className="interactive-screen-user-info">
+                        <span className="interactive-screen-user-name">{Name}</span>
+                        <span className="interactive-screen-user-credits">Credits Remaining - {Credits}</span>
                     </div>
-                  </div>
+                    <div className="interactive-screen-user-actions">
+                        <div className="interactive-screen-blue-button" onClick={() => handleOtherDetails(Useremail)}>Other Details</div>
+                        <div className="interactive-screen-blue-button" onClick={() => handleViewTranscript(Useremail)}>View Transcript</div>
+                        <div className="interactive-screen-blue-button" onClick={() => handleViewJD(Useremail)}>View Final J.D.</div>
+                    </div>
                 </div>
-              </div>
-    
-              {/* Right Section */}
-              <div className="userlist-frame-right">
-                <div className="userlist-buttons">
-                  <div
-                    className="userlist-viewall-button"
-                    onClick={() => handleViewAll(Useremail, ConversationNumber)}
-                  >
-                    <div className="userlist-viewall-button-text">View All</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        
-        
-      };
-    
+                    
+
+
+            );
+        }
 
         return (
             <div className="userlist-frame" key={Useremail}>

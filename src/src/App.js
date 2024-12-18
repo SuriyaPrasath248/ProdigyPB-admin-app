@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import InteractiveScreen from "./pages/InteractiveScreen";
-import ConversationScreen from "./pages/ConversationScreen";
 import OtherDetailsPage from "./pages/OtherDetailsPage";
 import ViewJDPage from "./pages/ViewJDPage";
 import ViewTranscriptPage from "./pages/ViewTranscriptPage";
@@ -26,7 +25,6 @@ function App() {
                     <Routes>
                         {/* Default to InteractiveScreen */}
                         <Route path="/" element={<InteractiveScreen />} />
-                        <Route path ="/conversationpage" element ={<ConversationScreen/>}/>
                         <Route path ="/Settings" element ={<SettingsPage/>}/>
                         <Route path="/otherdetails" element={<OtherDetailsPage />} />
                         <Route path="/viewjd" element={<ViewJDPage />} />
