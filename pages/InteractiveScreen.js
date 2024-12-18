@@ -53,7 +53,7 @@ const InteractiveScreen = () => {
         fetchUsers();
     }, []);
 
-    const handleOtherDetails = async (userEmail, conversationNumber =1) => {
+    const handleOtherDetails = async (userEmail) => {
       console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
       const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
       const docRef = doc(db, path);
@@ -68,14 +68,14 @@ const InteractiveScreen = () => {
           delete filteredData.LinkCreated;
   
           console.log("Filtered Data to send:", filteredData); // Log filtered data being sent
-          navigate("/otherdetails", { state: { data: filteredData, userEmail,conversationNumber } });
+          navigate("/otherdetails", { state: { data: filteredData, userEmail } });
       } else {
           console.error("No data found at path:", path);
       }
   };
   
     
-    const handleViewJD = async (userEmail, conversationNumber =1) => {
+    const handleViewJD = async (userEmail) => {
         const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
         const docRef = doc(db, path);
         const docSnap = await getDoc(docRef);
@@ -89,13 +89,13 @@ const InteractiveScreen = () => {
             delete filteredData.ViewedBy;
             delete filteredData.Timestamp;
 
-            navigate("/viewjd", { state: { data: filteredData, userEmail,conversationNumber } });
+            navigate("/viewjd", { state: { data: filteredData, userEmail } });
         } else {
             console.error("No data found at path:", path);
         }
     };
 
-    const handleViewTranscript = async (email, conversationNumber =1) => {
+    const handleViewTranscript = async (email) => {
         console.log(`Navigating to transcript for: ${email}`);
        // navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
         if (!email) {
@@ -112,7 +112,7 @@ const InteractiveScreen = () => {
                 const chatHistory = docSnap.data().Chat || [];
                 console.log("Fetched chat history:", chatHistory);
                 //navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
-                navigate("/viewtranscript", { state: { userEmail: email, chatHistory,conversationNumber } }); // Pass userEmail here
+                navigate("/viewtranscript", { state: { userEmail: email, chatHistory } }); // Pass userEmail here
             } else {
                 console.error("No data found at path:", path);
             }

@@ -7,7 +7,7 @@ import "./ViewTranscriptPage.css";
 const ViewTranscriptPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { userEmail, conversationNumber } = location.state || {};
+    const { userEmail } = location.state || {};
     const [chatHistory, setChatHistory] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -15,7 +15,7 @@ const ViewTranscriptPage = () => {
     useEffect(() => {
         const fetchChatHistory = async () => {
             try {
-                const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation${conversationNumber}/Transcript/ChatHistory`;
+                const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1/Transcript/ChatHistory`;
                 const docRef = doc(db, path);
                 const docSnap = await getDoc(docRef);
     
@@ -34,34 +34,34 @@ const ViewTranscriptPage = () => {
         };
     
         fetchChatHistory();
-    }, [userEmail, conversationNumber]);
+    }, [userEmail]);
+
     // Function for "Other Details"
-    const handleOtherDetails = async (userEmail, conversationNumber ) => {
-        console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
-        const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
-        const docRef = doc(db, path);
-        const docSnap = await getDoc(docRef);
-    
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            console.log("Fetched Data for OtherDetailsPage:", data); // Log the fetched data
-    
-            const filteredData = { ...data };
-            delete filteredData.JDCreated;
-            delete filteredData.LinkCreated;
-    
-            console.log("OtherDetailsPage loaded with:", { userEmail, conversationNumber });
-            navigate("/otherdetails", { state: { data: filteredData, userEmail,conversationNumber } });
-        } else {
-            console.error("No data found at path:", path);
+    const handleOtherDetails = async () => {
+        try {
+            const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
+            const docRef = doc(db, path);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const filteredData = { ...data };
+                delete filteredData.JDCreated;
+                delete filteredData.LinkCreated;
+
+                navigate("/otherdetails", { state: { data: filteredData } });
+            } else {
+                console.error("No data found at path:", path);
+            }
+        } catch (error) {
+            console.error("Error fetching other details:", error);
         }
     };
-    
 
     // Function for "View J.D."
-    const handleViewJD = async (userEmail, conversationNumber) => {
+    const handleViewJD = async () => {
         try {
-            const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation${conversationNumber}`;
+            const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
             const docRef = doc(db, path);
             const docSnap = await getDoc(docRef);
 
@@ -74,7 +74,7 @@ const ViewTranscriptPage = () => {
                 delete filteredData.ViewedBy;
                 delete filteredData.Timestamp;
 
-                navigate("/viewjd", { state: { data: filteredData, userEmail,conversationNumber } });
+                navigate("/viewjd", { state: { data: filteredData } });
             } else {
                 console.error("No data found at path:", path);
             }
@@ -95,7 +95,7 @@ const ViewTranscriptPage = () => {
             <div className="transcript-header-inside">
               {/* Left Header (Back Button) */}
               <div className="transcript-header-left">
-                <div className="transcript-back-button"  onClick={() => navigate("/")}>
+                <div className="transcript-back-button"  onClick={() => navigate(-1)}>
                     <img src="/back.png" alt="Back" />
                     </div>
                     {userEmail && <div className="transcript-user-email">{userEmail}</div>}
@@ -105,10 +105,8 @@ const ViewTranscriptPage = () => {
   
               {/* Right Header (Other Details and View JD Buttons) */}
               <div className="transcript-header-right">
-                <div className="transcript-OtherDetails-button" 
-                 onClick={() => handleOtherDetails(userEmail, conversationNumber)}>Other Details</div>
-                <div className="transcript-ViewJD-button" 
-                 onClick={() => handleViewJD(userEmail,conversationNumber)} >View Final J.D</div>
+                <div className="transcript-OtherDetails-button" onClick={handleOtherDetails}>Other Details</div>
+                <div className="transcript-ViewJD-button" onClick={handleViewJD} >View Final J.D</div>
               </div>
             </div>
           </div>
@@ -120,7 +118,7 @@ const ViewTranscriptPage = () => {
                 <React.Fragment key={index}>
                     {/* Prompt */}
                     <div className="transcript-ai-container">
-                    <div className="transcript-ai-img-circle">
+                    <div class="transcript-ai-img-circle">
                         <img src="/ailogo.png" alt="AI" class="transcript-ai-img" />
                     </div>
                     <div className="transcript-ai-text">{chat.Response || "No AI Message"}</div>

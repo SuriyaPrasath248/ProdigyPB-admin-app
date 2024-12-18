@@ -1,66 +1,23 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { db } from "../firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import "./ViewJDPage.css";
 
 const ViewJDPage = () => {
   const location = useLocation();
-  const { data, userEmail, conversationNumber } = location.state || {};
+  const { data, userEmail } = location.state || {};
   const navigate = useNavigate();
 
   const handleBackNavigation = () => {
-    navigate("/"); // Go back to the previous page
+    navigate(-1); // Go back to the previous page
   };
 
-    const handleOtherDetails = async (userEmail, conversationNumber ) => {
-      console.log("handleOtherDetails triggered for:", userEmail); // Log email being passed
-      const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation1`;
-      const docRef = doc(db, path);
-      const docSnap = await getDoc(docRef);
-  
-      if (docSnap.exists()) {
-          const data = docSnap.data();
-          console.log("Fetched Data for OtherDetailsPage:", data); // Log the fetched data
-  
-          const filteredData = { ...data };
-          delete filteredData.JDCreated;
-          delete filteredData.LinkCreated;
-  
-          console.log("Filtered Data to send:", filteredData); // Log filtered data being sent
-          navigate("/otherdetails", { state: { data: filteredData, userEmail,conversationNumber } });
-      } else {
-          console.error("No data found at path:", path);
-      }
+  const handleOtherDetails = () => {
+    navigate("/otherdetails");
   };
-   
 
-  const handleViewTranscript = async (email, conversationNumber ) => {
-          console.log(`Navigating to transcript for: ${email}`);
-         // navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
-          if (!email) {
-              console.error("No email provided for fetching the transcript.");
-              return;
-          }
-      
-          try {
-              const path = `ProjectBrainsReact/User/${email}/userdetails/Conversations/Conversation1/Transcript/ChatHistory`;
-              const docRef = doc(db, path);
-              const docSnap = await getDoc(docRef);
-      
-              if (docSnap.exists()) {
-                  const chatHistory = docSnap.data().Chat || [];
-                  console.log("Fetched chat history:", chatHistory);
-                  //navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
-                  navigate("/viewtranscript", { state: { userEmail: email, chatHistory,conversationNumber } }); // Pass userEmail here
-              } else {
-                  console.error("No data found at path:", path);
-              }
-          } catch (error) {
-              console.error("Error fetching chat history:", error);
-          }
-      };
-      
+  const handleViewTranscript = () => {
+    navigate("/viewtranscript");
+  };
 
   const handleCopyLink = () => {
     if (data && data.LinkCreated) {
@@ -113,13 +70,13 @@ const ViewJDPage = () => {
           <div className="view-jd-header-right">
             <div 
               className="view-jd-OtherDetails-button" 
-              onClick={() => handleOtherDetails(userEmail, conversationNumber)}
+              onClick={handleOtherDetails}
             >
               Other Details
             </div>
             <div 
               className="view-jd-ViewTranscript-button" 
-              onClick={() => handleViewTranscript(userEmail, conversationNumber)}
+              onClick={handleViewTranscript}
             >
               View Transcript
             </div>

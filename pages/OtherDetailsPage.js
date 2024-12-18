@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { db } from "../firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import "./OtherDetailsPage.css";
 
 const OtherDetailsPage = () => {
     const location = useLocation();
    
     const navigate = useNavigate();
-    const { data, userEmail, conversationNumber } = location.state || {};
-
+    const { data, userEmail } = location.state || {};
     const [sharedByEmails, setSharedByEmails] = useState([]);
     const [viewedByEmails, setViewedByEmails] = useState([]);
 
-    //console.log("OtherDetailsPage loaded with data:", data); // Log fetched data
+    console.log("OtherDetailsPage loaded with data:", data); // Log fetched data
     console.log("OtherDetailsPage userEmail:", userEmail); // Log user email
-    
-    console.log("OtherDetailsPage loaded with:", { userEmail, conversationNumber });
-
-
-    if (!conversationNumber) {
-      console.error("No conversationNumber provided!"); // Debug or handle this case
-    }
-
     useEffect(() => {
         // Populate shared and viewed emails from `data`
         if (data) {
@@ -32,60 +21,6 @@ const OtherDetailsPage = () => {
             console.log("Viewed By Emails:", data?.ViewedBy || []);
         }
     }, [data]);
-
-    
-    const handleViewJD = async (userEmail, conversationNumber) => {
-      const path = `ProjectBrainsReact/User/${userEmail}/userdetails/Conversations/Conversation${conversationNumber}`;
-      const docRef = doc(db, path);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-          const data = docSnap.data();
-          const filteredData = { ...data };
-          delete filteredData.AdditionalFeedback;
-          delete filteredData.SessionFeedback;
-          delete filteredData.SharedBy;
-          delete filteredData.ViewedBy;
-          delete filteredData.Timestamp;
-
-          navigate("/viewjd", { state: { data: filteredData, userEmail,conversationNumber } });
-          
-          console.log("viewJDPage loaded with:", { userEmail, conversationNumber });
-
-      } else {
-          console.error("No data found at path:", path);
-      }
-  };
-
-  const handleViewTranscript = async (email, conversationNumber) => {
-      console.log(`Navigating to transcript for: ${email}`);
-     // navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
-      if (!email) {
-          console.error("No email provided for fetching the transcript.");
-          return;
-      }
-  
-      try {
-          const path = `ProjectBrainsReact/User/${email}/userdetails/Conversations/Conversation${conversationNumber}/Transcript/ChatHistory`;
-          const docRef = doc(db, path);
-          const docSnap = await getDoc(docRef);
-  
-          if (docSnap.exists()) {
-              const chatHistory = docSnap.data().Chat || [];
-              //console.log("Fetched chat history:", chatHistory);
-
-              console.log("viewtranscriptPage loaded with:", { userEmail, conversationNumber });
-              
-              //navigate("/viewtranscript",{/* { state: { userEmail: email, chatHistory } }*/}); // Pass userEmail here
-              navigate("/viewtranscript", { state: { userEmail: email, chatHistory,conversationNumber } }); // Pass userEmail here
-          } else {
-              console.error("No data found at path:", path);
-          }
-      } catch (error) {
-          console.error("Error fetching chat history:", error);
-      }
-  };
-  
 
     const renderEmailList = (emails, title) => {
       return (
@@ -120,7 +55,7 @@ const OtherDetailsPage = () => {
             <div className="Otherdetails-header-inside">
               {/* Left Header (Back Button) */}
               <div className="Otherdetails-header-left">
-                <div className="Otherdetails-back-button"  onClick={() => navigate("/")}>
+                <div className="Otherdetails-back-button"  onClick={() => navigate(-1)}>
                     <img src="/back.png" alt="Back" />
                     </div>
                     {userEmail && <div className="Otherdetails-user-email">{userEmail}</div>}
@@ -130,12 +65,8 @@ const OtherDetailsPage = () => {
   
               {/* Right Header (Other Details and View JD Buttons) */}
               <div className="Otherdetails-header-right">
-                <div className="Otherdetails-OtherDetails-button" 
-                 onClick={() => handleViewTranscript(userEmail,conversationNumber)}
-                >View Transcript</div>
-                <div className="Otherdetails-ViewJD-button" 
-                 onClick={() => handleViewJD(userEmail,conversationNumber)} 
-                >View Final J.D</div>
+                <div className="Otherdetails-OtherDetails-button" >View Transcript</div>
+                <div className="Otherdetails-ViewJD-button"  >View Final J.D</div>
               </div>
             </div>
           </div>
